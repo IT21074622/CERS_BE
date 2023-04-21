@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Dapper;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 using System.Threading.Tasks;
 using Employee.Models;
 using Employee.Repository.Interfaces;
 
 
+
 namespace Employee.Repository
 {
-    public class vehicleService : Ivehicle
+    public class mchineryService : IMachinery
     {
         HttpRequest _request;
 
         private readonly string _connectionString;
 
-        public vehicleService(string connectionString)
+        public mchineryService(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -32,7 +26,7 @@ namespace Employee.Repository
             this._request = request;
         }
 
-        public async Task<Response> Select(int VID)
+        public async Task<Response> Select(int MID)
         {
             try
             {
@@ -40,8 +34,8 @@ namespace Employee.Repository
                 {
                     DynamicParameters para = new DynamicParameters();
 
-                    para.Add("@VehicleCatID", VID);
-                    var results = await connection.QueryAsync<vehicleClass>("[dbo].[SelectVehiclesByVehicleCategory]", para, commandType: CommandType.StoredProcedure);
+                    para.Add("@MachineCatID", MID);
+                    var results = await connection.QueryAsync<vehicleClass>("[dbo].[SelectMachineByMachineCategory]", para, commandType: CommandType.StoredProcedure);
                     return new ResponseService().GetSuccessResponse(results);
                 }
             }
@@ -55,4 +49,6 @@ namespace Employee.Repository
             }
         }
     }
+
+
 }

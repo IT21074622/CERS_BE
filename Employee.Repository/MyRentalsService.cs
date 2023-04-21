@@ -14,16 +14,15 @@ using System.Threading.Tasks;
 using Employee.Models;
 using Employee.Repository.Interfaces;
 
-
 namespace Employee.Repository
 {
-    public class vehicleService : Ivehicle
+    public class MyRentalsService : IMyRentalsRepository
     {
         HttpRequest _request;
 
         private readonly string _connectionString;
 
-        public vehicleService(string connectionString)
+        public MyRentalsService(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -32,7 +31,7 @@ namespace Employee.Repository
             this._request = request;
         }
 
-        public async Task<Response> Select(int VID)
+        public async Task<Response> Select(int UserID, string Type)
         {
             try
             {
@@ -40,8 +39,9 @@ namespace Employee.Repository
                 {
                     DynamicParameters para = new DynamicParameters();
 
-                    para.Add("@VehicleCatID", VID);
-                    var results = await connection.QueryAsync<vehicleClass>("[dbo].[SelectVehiclesByVehicleCategory]", para, commandType: CommandType.StoredProcedure);
+                    para.Add("@UserID", UserID);
+                    para.Add("@Type", Type);
+                    var results = await connection.QueryAsync<MyRentalsClass>("[dbo].[SelectMyRentals]", para, commandType: CommandType.StoredProcedure);
                     return new ResponseService().GetSuccessResponse(results);
                 }
             }

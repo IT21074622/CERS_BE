@@ -10,22 +10,22 @@ namespace Employee.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VehicleController : ControllerBase
+    public class machineryController : ControllerBase
     {
-        private readonly Ivehicle _vehicle;
+        private readonly IMachinery _machinery;
 
-        public VehicleController(Ivehicle vehicle)
+        public machineryController(IMachinery machinery)
         {
-            _vehicle = vehicle;
+            _machinery = machinery;
 
         }
 
         // GET: api/<controller>
-        [HttpGet("select/{VID}")]
-        public async Task<ActionResult> Select(int VID)
+        [HttpGet("select/{MID}")]
+        public async Task<ActionResult> Select(int MID)
         {
-            _vehicle.SetRequest(Request);
-            var response = await _vehicle.Select(VID);
+            _machinery.SetRequest(Request);
+            var response = await _machinery.Select(MID);
 
             if (response.Success)
                 return Ok(response);
