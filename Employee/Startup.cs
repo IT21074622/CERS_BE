@@ -55,6 +55,8 @@ namespace Employee
 
             services.AddTransient<IEmployeeRepository>(c => new EmployeeService(_connectionString));
             services.AddTransient<IModuleRepository>(c => new ModuleService(_connectionString));
+            services.AddTransient<IMachineRepository>(c => new MachineService(_connectionString));
+            services.AddTransient<IVehicleRepository>(c => new VehicleService(_connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
