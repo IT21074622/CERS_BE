@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 using Employee.Repository;
 using Employee.Repository.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.FileProviders;
 
 namespace Employee
 {
@@ -55,6 +56,7 @@ namespace Employee
 
             services.AddTransient<IEmployeeRepository>(c => new EmployeeService(_connectionString));
             services.AddTransient<IModuleRepository>(c => new ModuleService(_connectionString));
+            services.AddTransient<IOfferRepository>(c => new OfferService(_connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +76,12 @@ namespace Employee
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Version 1");
+            });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "OfferPhotos")),
+                RequestPath = "/OfferPhotos"
             });
 
             app.UseHttpsRedirection();
