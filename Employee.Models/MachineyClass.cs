@@ -6,9 +6,10 @@ namespace Employee.Models
 {
     public class machineryClass
     {
-        public int MID { get; set; }
+        public string MID { get; set; }
         public string name { get; set; }
         public string description { get; set; }
+        public string ImagePath { get; set; }
         public float price { get; set; }
     }
 }

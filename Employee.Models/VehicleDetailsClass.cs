@@ -22,5 +22,6 @@ namespace Employee.Models
         public string Feature2 { get; set; }
         public string Feature3 { get; set; }
         public string ImagePath { get; set; }
+        public string Commission { get; set; }
     }
 }

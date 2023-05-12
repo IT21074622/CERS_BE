@@ -13,8 +13,8 @@ namespace Employee.Models
         public int? Quantity { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
-        public float? SecurityDeposit { get; set; }
-        public float RentalAmount { get; set; }
+        public int? SecurityDeposit { get; set; }
+        public int? RentalAmount { get; set; }
         public int? UserID { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime ExtensionDate { get; set; }
