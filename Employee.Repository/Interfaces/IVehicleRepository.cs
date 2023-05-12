@@ -10,8 +10,8 @@ namespace Employee.Repository.Interfaces
     public interface IVehicleRepository
     {
         Task<Response> Select(string VehicleID);
-        Task<Response> Insert(VehicleClass vehicle);
-        Task<Response> Update(VehicleClass vehicle);
+        Task<Response> Insert(InventoryVehicleModel vehicle);
+        Task<Response> Update(InventoryVehicleModel vehicle);
         Task<Response> Delete(string VehicleID);
         void SetRequest(HttpRequest httpRequest);
     }
